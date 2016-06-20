@@ -1,9 +1,8 @@
 ##Code Book - a tidy data set with data collected from the accelerometers from the Samsung Galaxy S smartphone
 
-* variable - feature name (see 'UCI HAR Dataset/features_info.txt' for more details)
 * activity - activity name (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING)
 * subject - the subject who performed the activity (ranges from 1 to 30)
-* average_value - the average of the variable for the activity and the subject (features are normalized and bounded within [-1,1])
+* columns 3-68 labeled with feature names - the average of the feature for the activity and the subject (features are normalized and bounded within [-1,1])
 
 Transformations that were performed on the original dataset:
 

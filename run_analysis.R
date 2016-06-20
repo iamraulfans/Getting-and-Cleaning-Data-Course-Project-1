@@ -1,5 +1,3 @@
-library(dplyr)
-library(tidyr)
 measurements_train <- read.table("./UCI HAR Dataset/train/X_train.txt",
                                  colClasses = "numeric")
 labels_train <- read.table("./UCI HAR Dataset/train/y_train.txt",
@@ -27,8 +25,7 @@ activity_labels <- read.table("./UCI HAR Dataset/activity_labels.txt",
                               colClasses = c("numeric", "factor"))
 activity <- merge(labels, activity_labels)$activity
 mergedData <- cbind(measurements, activity, subjects)
-tidyData <- tbl_df(mergedData) %>%
-        gather(variable, value, -c(activity, subject)) %>%
-        group_by(variable, activity, subject) %>%
-        summarize(average_value = mean(value))
-write.table(tidyData, "tidy_data.txt", quote = FALSE, row.names = FALSE)
+tidyData <- aggregate(mergedData[, 1:66], list(mergedData$activity,
+                                               mergedData$subject), mean)
+names(tidyData)[c(1, 2)] <- c("activity", "subject")
+write.table(tidyData, "tidy_data.txt", row.names = FALSE)
